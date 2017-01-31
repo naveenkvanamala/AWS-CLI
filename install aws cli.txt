@@ -16,7 +16,7 @@ Till now we install python, python-pip and configure python with python-pip
 
 Now time to install AWS command line
 
-To install aws cli enter cmd as
+To install AWS Command line enter cmd as
 
 $sudo pip install awscli
 
