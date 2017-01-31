@@ -1,0 +1,34 @@
+How to install AWS CLI in linux(centos)
+Step:1 
+Install python 
+
+$yum install python
+
+$yum install python-pip
+
+Now configure pip download pip
+
+$curl “https://bootstrap.pypa.io/get-pip.py&#8221; -o “get-pip.py”
+
+$sudo python get-pip.py
+
+Till now we install python, python-pip and configure python with python-pip
+
+Now time to install AWS command line
+
+To install aws cli enter cmd as
+
+$sudo pip install awscli
+
+to verify
+$aws -version
+
+
+Now configure AWS cli with AWS GUI interface so we requried 
+1.AWS Access key Id
+2.AWS secret Access key
+3.Default region name
+4.Default output format
+
+To know how to get configure please verify 
+(https://naveenvanamala.wordpress.com/category/awscloud-computing/compute/)
