@@ -1,0 +1,40 @@
+Commands to launch ec2 instance using AWSCLI
+Before launch ec2 instance aws cli should configure properly
+i.e.,
+AWS KeyID
+AWS Secret Access Key
+Default region name
+Default output format
+(If not see verify Install-AWS-CLI.txt)
+
+Creating a security group
+
+$ aws ec2 create-security-group –group-name clisecuritygrp-sg –description “security group for development environment in EC2”
+
+####after enter this cmd you will get "Groupid" Notedown for further refference####
+
+
+Adding rules allow incoming traffic
+
+$ aws ec2 authorize-security-group-ingress –group-name clisecuritygrp-sg –protocol tcp –port 22 –cidr 0.0.0.0/0
+
+create a key pair, which allows you to connect to the instance.
+
+$ aws ec2 create-key-pair –key-name clisecurity-key –query ‘KeyMaterial’ –output text > clisecurity-key.pem
+
+Change the key permission to 400 i.e., read
+
+$ chmod 400 clisecurity-key.pem
+
+###Here ami-29ebb519 it is ubuntu image you can select according to requriement image can fin in AWS-AMI And here sg-8a952cf2 is security group it will get by entering the 1st command###
+ 
+$ aws ec2 run-instances –image-id ami-29ebb519 –security-group-ids sg-8a952cf2 –count 1 –instance-type t2.micro –key-name clisecurity-key –query ‘Instances[0].InstanceId’
+
+
+$ aws ec2 describe-instances –instance-ids i-074a6a46e9c60a812 –query ‘Reservations[0].Instances[0].PublicIpAddress’
+
+###here you will get ip address###
+
+By using ip address connect using ssh
+
+$ssh -i clisecurity-key.pem ubuntu@ipaddress
